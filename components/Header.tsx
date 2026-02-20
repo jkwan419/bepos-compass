@@ -9,7 +9,7 @@ export default function Header() {
       <div className="container header-wrapper">
         <Link href="/">
           <Image
-            src="/next.svg"
+            src="/assets/icons/logo.svg"
             alt="Bepos Compass logo"
             width={140}
             height={32}
