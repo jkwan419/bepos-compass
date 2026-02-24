@@ -55,7 +55,7 @@ export declare global {
     href: string;
   };
 
-  type SearchCommandProps = {
+  type SearchProps = {
     renderAs?: "button" | "text";
     label?: string;
     initialStocks: StockWithWatchlistStatus[];
