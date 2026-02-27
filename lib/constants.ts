@@ -1,10 +1,9 @@
 export const NAV_ITEMS = [
   { href: "/", label: "Dashboard" },
   { href: "/search", label: "Search" },
-  // { href: '/watchlist', label: 'Watchlist' },
+  { href: '/watchlist', label: 'Watchlist' },
 ];
 
-// Sign-up form select options
 export const INVESTMENT_GOALS = [
   { value: "Growth", label: "Growth" },
   { value: "Income", label: "Income" },
@@ -36,7 +35,6 @@ export const CONDITION_OPTIONS = [
   { value: "less", label: "Less than (<)" },
 ];
 
-// TradingView Charts
 export const MARKET_OVERVIEW_WIDGET_CONFIG = {
   colorTheme: "dark", // dark mode
   dateRange: "12M", // last 12 months
@@ -87,12 +85,12 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
       ],
     },
   ],
-  support_host: "https://www.tradingview.com", // TradingView host
-  backgroundColor: "#141414", // background color
-  width: "100%", // full width
-  height: 600, // height in px
-  showSymbolLogo: true, // show logo next to symbols
-  showChart: true, // display mini chart
+  support_host: "https://www.tradingview.com",
+  backgroundColor: "#141414",
+  width: "100%",
+  height: 600,
+  showSymbolLogo: true,
+  showChart: true,
 };
 
 export const HEATMAP_WIDGET_CONFIG = {

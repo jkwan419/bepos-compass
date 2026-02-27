@@ -48,7 +48,7 @@ export const sendNewsSummaryEmail = async ({
   ).replace("{{newsContent}}", newsContent);
 
   const mailOptions = {
-    from: `"Bepos Compass News" <signalist@jsmastery.pro>`,
+    from: `"Bepos Compass News" <beposcompass@beposcompass.com>`,
     to: email,
     subject: `📈 Market News Summary Today - ${date}`,
     text: `Today's market news summary from Bepos Compass`,

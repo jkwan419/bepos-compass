@@ -42,7 +42,6 @@ export async function getNews(
 
     const maxArticles = 6;
 
-    // If we have symbols, try to fetch company news per symbol and round-robin select
     if (cleanSymbols.length > 0) {
       const perSymbolArticles: Record<string, RawNewsArticle[]> = {};
 
@@ -75,14 +74,11 @@ export async function getNews(
       }
 
       if (collected.length > 0) {
-        // Sort by datetime desc
         collected.sort((a, b) => (b.datetime || 0) - (a.datetime || 0));
         return collected.slice(0, maxArticles);
       }
-      // If none collected, fall through to general news
     }
 
-    // General market news fallback or when no symbols provided
     const generalUrl = `${FINNHUB_BASE_URL}/news?category=general&token=${token}`;
     const general = await fetchJSON<RawNewsArticle[]>(generalUrl, 300);
 
@@ -94,7 +90,7 @@ export async function getNews(
       if (seen.has(key)) continue;
       seen.add(key);
       unique.push(art);
-      if (unique.length >= 20) break; // cap early before final slicing
+      if (unique.length >= 20) break;
     }
 
     const formatted = unique
@@ -112,7 +108,6 @@ export const searchStocks = cache(
     try {
       const token = process.env.FINNHUB_API_KEY ?? NEXT_PUBLIC_FINNHUB_API_KEY;
       if (!token) {
-        // If no token, log and return empty to avoid throwing per requirements
         console.error(
           "Error in stock search:",
           new Error("FINNHUB API key is not configured"),
@@ -125,7 +120,6 @@ export const searchStocks = cache(
       let results: FinnhubSearchResult[] = [];
 
       if (!trimmed) {
-        // Fetch top 10 popular symbols' profiles
         const top = POPULAR_STOCK_SYMBOLS.slice(0, 10);
         const profiles = await Promise.all(
           top.map(async (sym) => {
@@ -154,9 +148,6 @@ export const searchStocks = cache(
               displaySymbol: symbol,
               type: "Common Stock",
             };
-            // We don't include exchange in FinnhubSearchResult type, so carry via mapping later using profile
-            // To keep pipeline simple, attach exchange via closure map stage
-            // We'll reconstruct exchange when mapping to final type
             (r as any).__exchange = exchange; // internal only
             return r;
           })

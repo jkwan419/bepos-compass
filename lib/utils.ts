@@ -61,12 +61,12 @@ export const calculateNewsDistribution = (symbolsCount: number) => {
   let targetNewsCount = 6;
 
   if (symbolsCount < 3) {
-    itemsPerSymbol = 3; // Fewer symbols, more news each
+    itemsPerSymbol = 3;
   } else if (symbolsCount === 3) {
-    itemsPerSymbol = 2; // Exactly 3 symbols, 2 news each = 6 total
+    itemsPerSymbol = 2;
   } else {
-    itemsPerSymbol = 1; // Many symbols, 1 news each
-    targetNewsCount = 6; // Don't exceed 6 total
+    itemsPerSymbol = 1;
+    targetNewsCount = 6;
   }
 
   return { itemsPerSymbol, targetNewsCount };
